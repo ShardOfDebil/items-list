@@ -1,0 +1,17 @@
+<div class="header-container">
+  <mat-toolbar-row class="header">
+    <div class="header__tabs">
+      <ng-container *ngFor="let page of pagesArr">
+        <button
+          mat-button
+          class="header__tabs__tab"
+          (click)="navigateTo(page.route)"
+        >{{page.name}}</button>
+      </ng-container>
+    </div>
+  </mat-toolbar-row>
+  <ng-container *ngIf="preloader">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </ng-container>
+</div>
+
