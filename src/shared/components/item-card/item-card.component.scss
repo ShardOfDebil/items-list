@@ -24,6 +24,9 @@
   &__content {
     color: #ffffff;
   }
+  &:hover {
+    cursor: pointer;
+  }
   &::after {
     content: '';
     position: absolute;
