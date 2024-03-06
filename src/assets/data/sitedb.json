@@ -1,0 +1,18 @@
+{
+  "gameCards": [
+    {
+      "name": "Death Stranding",
+      "genre": "Adventure",
+      "description": "Death Stranding is a 2019 action game developed by Kojima Productions and published by Sony Interactive Entertainment for the PlayStation 4. It is the first game from director Hideo Kojima and Kojima Productions after their split from Konami in 2015.",
+      "date": "2019",
+      "art": "deathStranding.jpg"
+    },
+    {
+      "name": "Doom Eternal",
+      "genre": "Action Shooter",
+      "description": "Doom Eternal is a first-person shooter game developed by id Software and published by Bethesda Softworks.",
+      "date": "2019",
+      "art": "doomEternal.jpg"
+    }
+  ]
+}

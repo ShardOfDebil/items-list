@@ -1,3 +1,33 @@
-.card-info {
-  max-width: 400px;
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  max-width: 470px;
+  height: 250px;
+  &__header {
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+  }
+  &__content {
+    color: #ffffff;
+  }
+  &::after {
+    content: ''; /* Псевдоэлементы требуют свойства content */
+    position: absolute; /* Абсолютное позиционирование относительно .card-info */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный оверлей */
+    z-index: 1; /* Убедитесь, что оверлей находится над фоновым изображением, но под текстом */
+  }
+  .mat-card-content, .mat-card-header {
+    position: relative;
+    z-index: 2;
+  }
 }
