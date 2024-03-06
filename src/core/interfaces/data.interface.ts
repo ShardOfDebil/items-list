@@ -3,5 +3,5 @@ export interface IGameCard {
   genre: string;
   description: string;
   date: string;
-  art: string;
+  art?: string;
 }

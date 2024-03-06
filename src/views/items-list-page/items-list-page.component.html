@@ -1,4 +1,7 @@
 <div class="container">
-  <app-item-card></app-item-card>
+  <app-item-card
+    *ngFor="let card of gameCards"
+    [data]="card">
+  </app-item-card>
 </div>
 
