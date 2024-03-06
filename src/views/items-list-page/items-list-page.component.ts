@@ -24,12 +24,8 @@ export class ItemsListPageComponent implements OnInit {
       this.gameCards = cards;
       this.cdr.markForCheck();
     });
-    this.loadItems();
   }
 
-  public loadItems(): void {
-    this.gameCards = JSON.parse(localStorage.getItem('items') || '[]');
-  }
   public openDetails(id: number): void {
     this.router.navigate([`/${ROUTE_PATH.DETAILED_PAGE}`, id]).then((r: boolean) => {
     });

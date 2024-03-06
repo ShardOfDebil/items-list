@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ROUTE_PATH} from '../../core/const/routes.enum';
+import {DataService} from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-item-new-page',
@@ -9,11 +12,15 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ItemNewPageComponent implements OnInit {
   public itemForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private dataService: DataService,
+  ) {
     this.itemForm = this.fb.group({
-      name: ['', Validators.required, Validators.min(3)],
-      genre: ['', Validators.required, Validators.min(3)],
-      releaseDate: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      genre: ['', [Validators.required, Validators.minLength(3)]],
+      releaseDate: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(4)]],
       description: [''],
     });
   }
@@ -23,8 +30,11 @@ export class ItemNewPageComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.itemForm.valid) {
-      console.log(this.itemForm.value);
-      // Здесь логика для добавления данных из формы в ваш список айтемов или отправка на сервер
+      // this.dataService.addGameCard(this.itemForm.value);
+      console.log('Item added:', this.itemForm.value);
+      this.itemForm.reset();
+      this.router.navigate([ROUTE_PATH.EMPTY]).then((r: boolean) => {
+      });
     }
   }
 }
