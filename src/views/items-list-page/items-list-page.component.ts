@@ -20,6 +20,10 @@ export class ItemsListPageComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.fetchGameCards();
+  }
+
+  public fetchGameCards(): void {
     this.dataService.getGameCardsPublic().subscribe((cards: IGameCard[]) => {
       this.gameCards = cards;
       this.cdr.markForCheck();

@@ -8,17 +8,14 @@ import {IGameCard} from '../../core/interfaces/data.interface';
   providedIn: 'root'
 })
 export class DataService {
-  private cache$: Observable<IGameCard[]> | undefined;
   constructor(private http: HttpClient) { }
 
-  private getGameCards(): Observable<IGameCard[]> {
-    if (!this.cache$) {
-      this.cache$ = this.http.get<{gameCards: IGameCard[]}>('assets/data/sitedb.json').pipe(
-        map((response: {gameCards: IGameCard[]}) => response.gameCards),
-        shareReplay(1)
-      );
-    }
-    return this.cache$;
+  public getGameCards(): Observable<IGameCard[]> {
+    const localData = JSON.parse(localStorage.getItem('additionalGameCards') || '[]');
+    return this.http.get<{gameCards: IGameCard[]}>('assets/data/sitedb.json').pipe(
+      map((response: {gameCards: IGameCard[]}) => [...response.gameCards, ...localData]),
+      shareReplay(1)
+    );
   }
 
   public getGameCardsPublic(): Observable<IGameCard[]> {
@@ -30,11 +27,9 @@ export class DataService {
       map((cards: IGameCard[]) => cards.find((card: IGameCard, index: number): boolean => index === id))
     );
   }
-  private loadAdditionalCards(): IGameCard[] {
-    return JSON.parse(localStorage.getItem('additionalGameCards') || '[]');
-  }
+
   public addGameCard(card: IGameCard): void {
-    const additionalCards: IGameCard[] = this.loadAdditionalCards();
+    const additionalCards = JSON.parse(localStorage.getItem('additionalGameCards') || '[]');
     additionalCards.push(card);
     localStorage.setItem('additionalGameCards', JSON.stringify(additionalCards));
   }
