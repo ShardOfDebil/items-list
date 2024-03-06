@@ -1,11 +1,9 @@
 <mat-card
   class="card"
-  [style.background-image]="'url(assets/arts/' + data.art + ')'"
-  (click)="openDetails()">
+  [style.background-image]="'url(assets/arts/' + data.art + ')'">
   <mat-card-header
     class="card__header"
   >
-    <mat-card-subtitle>{{data.genre}}</mat-card-subtitle>
     <mat-card-title>{{data.name}}</mat-card-title>
   </mat-card-header>
   <mat-card-content

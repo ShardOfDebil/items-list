@@ -21,4 +21,10 @@ export class DataService {
   public getGameCardsPublic(): Observable<IGameCard[]> {
     return this.getGameCards();
   }
+
+  public getGameCardById(id: number): Observable<IGameCard | undefined> {
+    return this.getGameCardsPublic().pipe(
+      map((cards: IGameCard[]) => cards.find((card: IGameCard, index: number): boolean => index === id))
+    );
+  }
 }

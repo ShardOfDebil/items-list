@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {ROUTE_PATH} from '../../core/const/routes.enum';
 import {IGameCard} from '../../core/interfaces/data.interface';
 import {DataService} from '../../shared/services/data.service';
 
@@ -12,8 +14,9 @@ export class ItemsListPageComponent implements OnInit {
   public gameCards: IGameCard[] = [];
 
   constructor(
+    private router: Router,
     private dataService: DataService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) { }
 
   public ngOnInit(): void {
@@ -23,4 +26,8 @@ export class ItemsListPageComponent implements OnInit {
     });
   }
 
+  public openDetails(id: number): void {
+    this.router.navigate([`/${ROUTE_PATH.DETAILED_PAGE}`, id]).then((r: boolean) => {
+    });
+  }
 }

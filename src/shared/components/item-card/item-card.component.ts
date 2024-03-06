@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IGameCard} from '../../../core/interfaces/data.interface';
 
 @Component({
@@ -9,11 +9,7 @@ import {IGameCard} from '../../../core/interfaces/data.interface';
 })
 export class ItemCardComponent implements OnInit {
   @Input() public data!: IGameCard;
-
   public ngOnInit(): void {
   }
 
-  public openDetails(): void {
-    // Логика для открытия деталей
-  }
 }
