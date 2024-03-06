@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {ROUTE_PATH} from '../../core/const/routes.enum';
 import {DataService} from '../../shared/services/data.service';
@@ -16,6 +17,7 @@ export class ItemNewPageComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private dataService: DataService,
+    private _snackBar: MatSnackBar,
   ) {
     this.itemForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -28,13 +30,19 @@ export class ItemNewPageComponent implements OnInit {
   public ngOnInit(): void {
   }
 
+  public openSnackBar(): void {
+    this._snackBar.open('Item successfully added', '', {
+      duration: 3000
+    });
+  }
   public onSubmit(): void {
     if (this.itemForm.valid) {
-      // this.dataService.addGameCard(this.itemForm.value);
+      this.dataService.addGameCard(this.itemForm.value);
       console.log('Item added:', this.itemForm.value);
       this.itemForm.reset();
       this.router.navigate([ROUTE_PATH.EMPTY]).then((r: boolean) => {
       });
+      this.openSnackBar();
     }
   }
 }

@@ -30,4 +30,12 @@ export class DataService {
       map((cards: IGameCard[]) => cards.find((card: IGameCard, index: number): boolean => index === id))
     );
   }
+  private loadAdditionalCards(): IGameCard[] {
+    return JSON.parse(localStorage.getItem('additionalGameCards') || '[]');
+  }
+  public addGameCard(card: IGameCard): void {
+    const additionalCards: IGameCard[] = this.loadAdditionalCards();
+    additionalCards.push(card);
+    localStorage.setItem('additionalGameCards', JSON.stringify(additionalCards));
+  }
 }
