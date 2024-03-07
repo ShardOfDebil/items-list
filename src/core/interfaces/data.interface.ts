@@ -1,7 +1,6 @@
-export interface IGameCard {
+export interface IItem {
   name: string;
   genre: string;
   description: string;
   date: string;
-  art?: string;
 }

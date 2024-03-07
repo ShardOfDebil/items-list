@@ -1,6 +1,6 @@
 <div class="container">
   <app-item-card
-    *ngFor="let card of gameCards, let id = index"
+    *ngFor="let card of cards, let id = index"
     [data]="card"
     (click)="openDetails(id)"
   >

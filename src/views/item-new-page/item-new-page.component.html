@@ -1,6 +1,5 @@
 <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
   <div class="details-card">
-    <img class="details-card__image">
     <div class="details-card__info">
       <mat-form-field>
         <mat-label>Name</mat-label>
@@ -9,16 +8,10 @@
           formControlName="name">
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Genre</mat-label>
-        <input
-          matInput
-          formControlName="genre">
-      </mat-form-field>
-      <mat-form-field>
         <mat-label>Release Date</mat-label>
         <input
           matInput
-          formControlName="releaseDate">
+          formControlName="type">
       </mat-form-field>
       <mat-form-field>
         <mat-label>Description</mat-label>
@@ -26,12 +19,10 @@
           matInput
           formControlName="description"></textarea>
       </mat-form-field>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary">Add Item</button>
     </div>
   </div>
-  <button
-    type="submit"
-    class="add-button"
-    mat-raised-button
-    color="primary"
-    style="width: 100%;">Add Item</button>
 </form>

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ROUTE_PATH} from '../../core/const/routes.enum';
-import {IGameCard} from '../../core/interfaces/data.interface';
+import {IItem} from '../../core/interfaces/data.interface';
 import {DataService} from '../../shared/services/data.service';
 
 @Component({
@@ -11,7 +11,7 @@ import {DataService} from '../../shared/services/data.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsListPageComponent implements OnInit {
-  public gameCards: IGameCard[] = [];
+  public cards: IItem[] = [];
 
   constructor(
     private router: Router,
@@ -24,8 +24,8 @@ export class ItemsListPageComponent implements OnInit {
   }
 
   public fetchGameCards(): void {
-    this.dataService.getGameCardsPublic().subscribe((cards: IGameCard[]) => {
-      this.gameCards = cards;
+    this.dataService.getCardsPublic().subscribe((cards: IItem[]) => {
+      this.cards = cards;
       this.cdr.markForCheck();
     });
   }

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IGameCard} from '../../../core/interfaces/data.interface';
+import {IItem} from '../../../core/interfaces/data.interface';
 
 @Component({
   selector: 'app-item-card',
@@ -8,7 +8,7 @@ import {IGameCard} from '../../../core/interfaces/data.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemCardComponent implements OnInit {
-  @Input() public data!: IGameCard;
+  @Input() public data!: IItem;
   public ngOnInit(): void {
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {catchError, of, switchMap} from 'rxjs';
-import {IGameCard} from '../../core/interfaces/data.interface';
+import {IItem} from '../../core/interfaces/data.interface';
 import {DataService} from '../../shared/services/data.service';
 
 @Component({
@@ -10,7 +10,7 @@ import {DataService} from '../../shared/services/data.service';
   styleUrls: ['./item-detailed-page.component.scss']
 })
 export class ItemDetailedPageComponent implements OnInit {
-  public gameCard!: IGameCard;
+  public gameCard!: IItem;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +22,7 @@ export class ItemDetailedPageComponent implements OnInit {
       switchMap(params => {
         const id = params.get('id');
         if (id) {
-          return this.dataService.getGameCardById(+id);
+          return this.dataService.getCardById(+id);
         } else {
           return of(null);
         }

@@ -1,5 +1,6 @@
 .details-card {
   display: flex;
+  justify-content: center;
   background-color: #f0f0f0;
   padding: 20px;
   border-radius: 8px;
@@ -7,18 +8,14 @@
   width: 80%;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 
-  &__image {
-    width: 30%;
-    aspect-ratio: 4 / 3;
-    border: solid 1px #000000;
-    object-fit: cover;
-  }
-
   &__info {
     margin-left: 20px;
     display: flex;
     flex-direction: column;
-    text-decoration: underline;
+
+    .mat-form-field {
+      width: 350px;
+    }
 
     h2, p {
       margin: 0 0 10px;

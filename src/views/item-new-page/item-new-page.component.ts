@@ -21,8 +21,7 @@ export class ItemNewPageComponent implements OnInit {
   ) {
     this.itemForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      genre: ['', [Validators.required, Validators.minLength(3)]],
-      releaseDate: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(4)]],
+      type: ['', [Validators.required, Validators.maxLength(4)]],
       description: [''],
     });
   }
@@ -37,7 +36,7 @@ export class ItemNewPageComponent implements OnInit {
   }
   public onSubmit(): void {
     if (this.itemForm.valid) {
-      this.dataService.addGameCard(this.itemForm.value);
+      this.dataService.addCard(this.itemForm.value);
       console.log('Item added:', this.itemForm.value);
       this.itemForm.reset();
       this.router.navigate([ROUTE_PATH.EMPTY]).then((r: boolean) => {
