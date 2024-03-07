@@ -12,15 +12,19 @@ export class DataService {
   private cards$: Observable<IItem[]> = this.cardsSubject.asObservable();
 
   constructor(private http: HttpClient) {
+    this.cards$ = this.cardsSubject.asObservable().pipe(shareReplay(1));
     this.loadInitialData();
   }
 
   private loadInitialData(): void {
-    const localData: IItem[] = JSON.parse(localStorage.getItem('additionalCards') || '[]');
     this.http.get<{itemList: IItem[]}>('assets/data/sitedb.json').pipe(
-      map(({itemList}) => [...itemList, ...localData])
-    ).subscribe((data: IItem[]) => {
-      this.cardsSubject.next(data);
+      map(({itemList}) => {
+        const localData: IItem[] = JSON.parse(localStorage.getItem('additionalCards') || '[]');
+        return [...itemList, ...localData];
+      })
+    ).subscribe({
+      next: (data: IItem[]) => this.cardsSubject.next(data),
+      error: (error: any) => console.error('Error loading initial data', error)
     });
   }
 
@@ -38,7 +42,8 @@ export class DataService {
     const currentCards: IItem[] = this.cardsSubject.getValue();
     const updatedCards: IItem[] = [...currentCards, card];
     this.cardsSubject.next(updatedCards);
-
-    localStorage.setItem('additionalCards', JSON.stringify(updatedCards));
+    const additionalCards: IItem[] = JSON.parse(localStorage.getItem('additionalCards') || '[]');
+    additionalCards.push(card);
+    localStorage.setItem('additionalCards', JSON.stringify(additionalCards));
   }
 }
