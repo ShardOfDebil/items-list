@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {ROUTE_PATH} from '../../core/const/routes.enum';
@@ -20,15 +20,20 @@ export class ItemNewPageComponent implements OnInit {
     private _snackBar: MatSnackBar,
   ) {
     this.itemForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3), this.englishNameValidator()]],
       type: ['', [Validators.required, Validators.minLength(4)]],
       description: [''],
     });
   }
-
   public ngOnInit(): void {
   }
 
+  public englishNameValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const isEnglish: boolean = /^[A-Za-z\s-]+$/.test(control.value);
+      return !isEnglish ? { nonEnglishName: { value: control.value } } : null;
+    };
+  }
   public openSnackBar(): void {
     this._snackBar.open('Item successfully added', '', {
       duration: 3000
