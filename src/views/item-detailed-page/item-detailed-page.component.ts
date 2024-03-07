@@ -43,7 +43,7 @@ export class ItemDetailedPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.destroy$.next(); // Испускаем сигнал для завершения подписок
-    this.destroy$.complete(); // Закрываем поток
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
