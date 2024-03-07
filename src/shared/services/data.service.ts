@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable, shareReplay} from 'rxjs';
+import {BehaviorSubject, Observable, shareReplay} from 'rxjs';
 import { map } from 'rxjs/operators';
 import {IItem} from '../../core/interfaces/data.interface';
 
@@ -8,29 +8,37 @@ import {IItem} from '../../core/interfaces/data.interface';
   providedIn: 'root'
 })
 export class DataService {
-  constructor(private http: HttpClient) { }
+  private cardsSubject = new BehaviorSubject<IItem[]>([]);
+  private cards$: Observable<IItem[]> = this.cardsSubject.asObservable();
 
-  private getCards(): Observable<IItem[]> {
+  constructor(private http: HttpClient) {
+    this.loadInitialData();
+  }
+
+  private loadInitialData(): void {
     const localData: IItem[] = JSON.parse(localStorage.getItem('additionalCards') || '[]');
-    return this.http.get<{itemList: IItem[]}>('assets/data/sitedb.json').pipe(
-      map((response: {itemList: IItem[]}) => [...response.itemList, ...localData]),
-      shareReplay(1)
-    );
+    this.http.get<{itemList: IItem[]}>('assets/data/sitedb.json').pipe(
+      map(({itemList}) => [...itemList, ...localData])
+    ).subscribe(data => {
+      this.cardsSubject.next(data);
+    });
   }
 
   public getCardsPublic(): Observable<IItem[]> {
-    return this.getCards();
+    return this.cards$;
   }
 
   public getCardById(id: number): Observable<IItem | undefined> {
-    return this.getCardsPublic().pipe(
+    return this.cards$.pipe(
       map((cards: IItem[]) => cards.find((card: IItem, index: number): boolean => index === id))
     );
   }
 
   public addCard(card: IItem): void {
-    const additionalCards: IItem[] = JSON.parse(localStorage.getItem('additionalCards') || '[]');
-    additionalCards.push(card);
-    localStorage.setItem('additionalCards', JSON.stringify(additionalCards));
+    const currentCards: IItem[] = this.cardsSubject.getValue();
+    const updatedCards: IItem[] = [...currentCards, card];
+    this.cardsSubject.next(updatedCards);
+
+    localStorage.setItem('additionalCards', JSON.stringify(updatedCards));
   }
 }

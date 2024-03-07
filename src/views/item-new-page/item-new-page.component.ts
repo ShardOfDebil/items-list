@@ -21,7 +21,7 @@ export class ItemNewPageComponent implements OnInit {
   ) {
     this.itemForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      type: ['', [Validators.required, Validators.maxLength(4)]],
+      type: ['', [Validators.required, Validators.minLength(4)]],
       description: [''],
     });
   }
