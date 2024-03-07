@@ -11,9 +11,9 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   private getCards(): Observable<IItem[]> {
-    const localData: IItem[] = JSON.parse(localStorage.getItem('additionalGameCards') || '[]');
-    return this.http.get<{gameCards: IItem[]}>('assets/data/sitedb.json').pipe(
-      map((response: {gameCards: IItem[]}) => [...response.gameCards, ...localData]),
+    const localData: IItem[] = JSON.parse(localStorage.getItem('additionalCards') || '[]');
+    return this.http.get<{itemList: IItem[]}>('assets/data/sitedb.json').pipe(
+      map((response: {itemList: IItem[]}) => [...response.itemList, ...localData]),
       shareReplay(1)
     );
   }
@@ -29,8 +29,8 @@ export class DataService {
   }
 
   public addCard(card: IItem): void {
-    const additionalCards: IItem[] = JSON.parse(localStorage.getItem('additionalGameCards') || '[]');
+    const additionalCards: IItem[] = JSON.parse(localStorage.getItem('additionalCards') || '[]');
     additionalCards.push(card);
-    localStorage.setItem('additionalGameCards', JSON.stringify(additionalCards));
+    localStorage.setItem('additionalCards', JSON.stringify(additionalCards));
   }
 }

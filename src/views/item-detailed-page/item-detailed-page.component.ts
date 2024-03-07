@@ -10,7 +10,7 @@ import {DataService} from '../../shared/services/data.service';
   styleUrls: ['./item-detailed-page.component.scss']
 })
 export class ItemDetailedPageComponent implements OnInit {
-  public gameCard!: IItem;
+  public item!: IItem;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +33,7 @@ export class ItemDetailedPageComponent implements OnInit {
       })
     ).subscribe(card => {
       if (card) {
-        this.gameCard = card;
+        this.item = card;
       } else {
         console.log('Game card not found or ID is missing');
       }

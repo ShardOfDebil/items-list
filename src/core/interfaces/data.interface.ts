@@ -1,6 +1,5 @@
 export interface IItem {
   name: string;
-  genre: string;
+  type: string;
   description: string;
-  date: string;
 }
