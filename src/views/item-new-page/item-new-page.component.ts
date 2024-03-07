@@ -37,7 +37,6 @@ export class ItemNewPageComponent implements OnInit {
   public onSubmit(): void {
     if (this.itemForm.valid) {
       this.dataService.addCard(this.itemForm.value);
-      console.log('Item added:', this.itemForm.value);
       this.itemForm.reset();
       this.router.navigate([ROUTE_PATH.EMPTY]).then((r: boolean) => {
       });
