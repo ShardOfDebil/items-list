@@ -8,7 +8,7 @@ import {IItem} from '../../core/interfaces/data.interface';
   providedIn: 'root'
 })
 export class DataService {
-  private cardsSubject = new BehaviorSubject<IItem[]>([]);
+  private cardsSubject: BehaviorSubject<IItem[]> = new BehaviorSubject<IItem[]>([]);
   private cards$: Observable<IItem[]> = this.cardsSubject.asObservable();
 
   constructor(private http: HttpClient) {
@@ -19,7 +19,7 @@ export class DataService {
     const localData: IItem[] = JSON.parse(localStorage.getItem('additionalCards') || '[]');
     this.http.get<{itemList: IItem[]}>('assets/data/sitedb.json').pipe(
       map(({itemList}) => [...itemList, ...localData])
-    ).subscribe(data => {
+    ).subscribe((data: IItem[]) => {
       this.cardsSubject.next(data);
     });
   }

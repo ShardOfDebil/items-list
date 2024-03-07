@@ -1,18 +1,54 @@
 {
   "itemList": [
     {
-      "name": "Death Stranding",
-      "type": "Adventure",
-      "description": "Death Stranding is a 2019 action game developed by Kojima Productions and published by Sony Interactive Entertainment for the PlayStation 4. It is the first game from director Hideo Kojima and Kojima Productions after their split from Konami in 2015.",
-      "date": "2019",
-      "art": "deathStranding.jpg"
+      "name": "Ibuprofen",
+      "type": "Nonsteroidal Anti-Inflammatory Drug (NSAID)",
+      "description": "Ibuprofen is used to reduce fever and treat pain or inflammation caused by many conditions such as headache, toothache, back pain, arthritis, menstrual cramps, or minor injury."
     },
     {
-      "name": "Doom Eternal",
-      "type": "Action Shooter",
-      "description": "Doom Eternal is a first-person shooter game developed by id Software and published by Bethesda Softworks.",
-      "date": "2019",
-      "art": "doomEternal.jpg"
+      "name": "Paracetamol",
+      "type": "Analgesic/Antipyretic",
+      "description": "Paracetamol (acetaminophen) is used to treat many conditions such as headache, muscle aches, arthritis, backache, toothaches, colds, and fevers."
+    },
+    {
+      "name": "Amoxicillin",
+      "type": "Antibiotic",
+      "description": "Amoxicillin is used to treat a wide variety of bacterial infections. This medication is a penicillin-type antibiotic."
+    },
+    {
+      "name": "Lisinopril",
+      "type": "ACE Inhibitor",
+      "description": "Lisinopril is used to treat high blood pressure (hypertension) in adults and children who are at least 6 years old."
+    },
+    {
+      "name": "Metformin",
+      "type": "Biguanide",
+      "description": "Metformin is used with a proper diet and exercise program and possibly with other medications to control high blood sugar. It is used in patients with type 2 diabetes."
+    },
+    {
+      "name": "Amlodipine",
+      "type": "Calcium Channel Blocker",
+      "description": "Amlodipine is used to treat chest pain (angina) and other conditions caused by coronary artery disease. It is also used to treat high blood pressure."
+    },
+    {
+      "name": "Simvastatin",
+      "type": "Statins",
+      "description": "Simvastatin is used along with a proper diet to help lower 'bad' cholesterol and fats (such as LDL, triglycerides) and raise 'good' cholesterol (HDL) in the blood."
+    },
+    {
+      "name": "Omeprazole",
+      "type": "Proton Pump Inhibitor",
+      "description": "Omeprazole is used to treat certain stomach and esophagus problems (such as acid reflux, ulcers). It works by decreasing the amount of acid your stomach makes."
+    },
+    {
+      "name": "Losartan",
+      "type": "Angiotensin II Receptor Blocker",
+      "description": "Losartan is used to treat high blood pressure (hypertension) and to help protect the kidneys from damage due to diabetes."
+    },
+    {
+      "name": "Albuterol",
+      "type": "Bronchodilator",
+      "description": "Albuterol is used to treat wheezing and shortness of breath caused by breathing problems (such as asthma, chronic obstructive pulmonary disease)."
     }
   ]
 }
