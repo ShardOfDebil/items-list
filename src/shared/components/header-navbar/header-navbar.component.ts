@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ROUTE_PATH} from '../../../core/const/routes.enum';
-import {Observable} from "rxjs";
 
 export interface IPages {
   name: string;
